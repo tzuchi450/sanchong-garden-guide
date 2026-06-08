@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三重靜思堂生態導覽</title>
+    <style>
+        body { font-family: '微軟正黑體', sans-serif; text-align: center; padding: 20px; background-color: #fdfbf7; }
+        .card { border: 1px solid #ddd; padding: 20px; margin: 20px auto; border-radius: 15px; background: white; max-width: 400px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
+        .stamp-box { margin-top: 20px; padding: 15px; background: #eee; border-radius: 10px; }
+        button { padding: 10px 20px; cursor: pointer; border: none; border-radius: 5px; background: #5a7d5a; color: white; }
+    </style>
+</head>
+<body>
+
+    <div id="content" class="card">
+        <h1>讀取中...</h1>
+    </div>
+
+    <div class="stamp-box">
+        <h3>我的植物集章冊</h3>
+        <p id="stamp-count">已收集: 0 / 19</p>
+        <button onclick="clearStamps()">清除所有集章</button>
+    </div>
+
+    <script>
+        const plants = {
+            "pistacia": { "name": "黃連木", "desc": "奇數羽狀複葉，核果熟時紫紅色。" },
+            "fraxinus": { "name": "光臘樹", "desc": "台灣原生喬木，又稱白雞油，翅果具薄翅。" },
+            "pinus": { "name": "琉球松", "desc": "兩針一束的針葉，球果卵狀圓錐形。" },
+            "hibiscus": { "name": "木芙蓉", "desc": "掌狀3-5裂葉，花色會由白轉粉紅。" },
+            "osmanthus": { "name": "桂花", "desc": "長橢圓葉，花黃白色，香氣濃郁。" },
+            "taxodium": { "name": "落羽松", "desc": "羽狀複葉，秋季轉為紅褐色。" },
+            "cinnamomum": { "name": "樟樹", "desc": "卵形葉，聚繖花序，漿果熟時紫黑色。" },
+            "bischofia": { "name": "茄苳", "desc": "三出複葉，果實熟時呈黃褐色。" },
+            "liquidambar": { "name": "楓香", "desc": "掌狀3裂葉，蒴果為頭狀刺球。" },
+            "delonix": { "name": "鳳凰木", "desc": "二回羽狀複葉，花色火紅，莢果帶狀。" },
+            "podocarpus": { "name": "羅漢松", "desc": "條狀披針形葉，園藝造型價值高。" },
+            "crossostephium": { "name": "芙蓉", "desc": "葉背具白毛，具特殊清香。" },
+            "ixora": { "name": "仙丹", "desc": "橢圓革質葉，花紅球狀，耐修剪。" },
+            "breynia": { "name": "斑葉長虹", "desc": "卵形葉具豐富斑紋，色彩繽紛。" },
+            "rhododendron": { "name": "平戶杜鵑", "desc": "披針形葉，春季盛開粉紅至紅色花。" },
+            "ophiopogon": { "name": "麥門冬", "desc": "叢生線形葉，漿果成熟呈藍色。" },
+            "ophiopogon_p": { "name": "沿階草", "desc": "基部叢生，適合作為邊緣地被。" },
+            "axonopus": { "name": "巴西地毯草", "desc": "質軟的寬線形葉，覆蓋力強。" },
+            "zoysia": { "name": "台北草", "desc": "質地極細緻的平整地被。" }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        let stamps = JSON.parse(localStorage.getItem('myStamps') || '[]');
+
+        function updateUI() {
+            const content = document.getElementById('content');
+            if (plants[id]) {
+                content.innerHTML = `<h1>${plants[id].name}</h1><p>${plants[id].desc}</p>`;
+                if (!stamps.includes(id)) {
+                    stamps.push(id);
+                    localStorage.setItem('myStamps', JSON.stringify(stamps));
+                    alert("恭喜！您已收集到 " + plants[id].name + "！");
+                }
+            } else {
+                content.innerHTML = "<h1>三重靜思堂生態導覽</h1><p>請掃描園區內的植物 QR Code 開始探索！</p>";
+            }
+            document.getElementById('stamp-count').innerText = `已收集: ${stamps.length} / 19`;
+        }
+
+        function clearStamps() {
+            localStorage.removeItem('myStamps');
+            stamps = [];
+            updateUI();
+            alert("集章冊已清除。");
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>
