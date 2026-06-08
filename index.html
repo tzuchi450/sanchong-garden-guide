@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg-color: #f7f3ed; /* 質樸米白 */
+            --bg-color: #f7f3ed;
             --card-bg: #ffffff;
-            --text-main: #3d3d3d; /* 溫潤墨色 */
+            --text-main: #3d3d3d;
             --text-dim: #7a7a7a;
-            --gold-accent: #b08d57; /* 靜思質樸金 */
+            --gold-accent: #b08d57;
             --border-metal: #dcd0c0;
         }
 
@@ -51,8 +51,21 @@
         .collection-section h3 { text-align: center; font-family: 'Noto Serif TC', serif; font-weight: 400; letter-spacing: 2px; color: var(--text-main); margin-bottom: 30px; }
 
         .stamp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-        .stamp-item { aspect-ratio: 1; background: #eee8e0; border: 1px solid #dcd0c0; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #c0b5a5; transition: 0.4s; border-radius: 2px; }
-        .stamp-item.active { background: #fff; border-color: var(--gold-accent); color: var(--gold-accent); }
+        .stamp-item { 
+            aspect-ratio: 1; 
+            background: #eee8e0; 
+            border: 1px solid #dcd0c0; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: 0.4s; 
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        /* 放大並填滿方框 */
+        .stamp-item i { font-size: 50px; color: #c0b5a5; }
+        .stamp-item.active { background: #fff; border-color: var(--gold-accent); }
+        .stamp-item.active i { color: var(--gold-accent); }
 
         .action-section { margin-top: 50px; padding: 30px; border-top: 1px solid #dcd0c0; width: 90%; max-width: 600px; text-align: center; }
         .btn-link { display: inline-block; width: 42%; border: 1px solid var(--gold-accent); padding: 12px; color: var(--gold-accent); text-decoration: none; font-size: 13px; margin: 5px; transition: 0.3s; border-radius: 2px; }
@@ -86,7 +99,7 @@
             "pistacia": { "name": "黃連木", "origin": "原生種", "desc": "羽狀複葉如傘，秋紅展現生命之美，靜守於庭院之中。", "icon": "fa-leaf" },
             "fraxinus": { "name": "光臘樹", "origin": "原生種", "desc": "樹幹斑紋優雅，為自然界的小生命提供溫暖的依靠。", "icon": "fa-bug" },
             "pinus": { "name": "琉球松", "origin": "外來種", "desc": "蒼勁挺拔，如同長者的睿智，靜觀歲月更迭。", "icon": "fa-tree" },
-            "hibiscus": { "name": "木芙蓉", "origin": "原生種", "desc": "晨白暮粉，如心境流轉，呈現大自然的無常之美。", "icon": "fa-flower-tulip" },
+            "hibiscus": { "name": "木芙蓉", "origin": "原生種", "desc": "晨白暮粉，如心境流轉，呈現大自然的無常之美。", "icon": "fa-fan" },
             "osmanthus": { "name": "桂花", "origin": "外來種", "desc": "幽香傳千里，不爭妍鬥艷，傳遞清淨的氣息。", "icon": "fa-wind" },
             "taxodium": { "name": "落羽松", "origin": "外來種", "desc": "羽葉細膩，秋冬時節紅褐色，是大地的禮讚。", "icon": "fa-snowflake" },
             "cinnamomum": { "name": "樟樹", "origin": "原生種", "desc": "清香除瘴，廣大遮蔭，如同慈悲的心念包容萬物。", "icon": "fa-tree" },
