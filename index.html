@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>三重靜思堂生態導覽</title>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;500;700&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>三重靜思堂｜人文生態導覽</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --card-bg: #111111;
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-            --metal-accent: #444444;
-            --silver-glow: linear-gradient(135deg, #ffffff 0%, #a0a0a0 50%, #444444 100%);
+            --bg-color: #f7f3ed; /* 質樸米白 */
+            --card-bg: #ffffff;
+            --text-main: #3d3d3d; /* 溫潤墨色 */
+            --text-dim: #7a7a7a;
+            --gold-accent: #b08d57; /* 靜思質樸金 */
+            --border-metal: #dcd0c0;
         }
 
         body {
-            font-family: 'Urbanist', 'Noto Sans TC', sans-serif;
+            font-family: 'Noto Sans TC', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
@@ -28,81 +28,80 @@
             min-height: 100vh;
         }
 
-        .top-bar { width: 100%; height: 4px; background: var(--silver-glow); }
+        .header-bar { width: 100%; height: 6px; background: linear-gradient(90deg, #dcd0c0, var(--gold-accent), #dcd0c0); }
 
         header { padding: 40px 20px; text-align: center; }
-        header h2 { font-weight: 300; letter-spacing: 5px; margin: 0; color: var(--text-dim); font-size: 14px; }
+        header h2 { font-family: 'Noto Serif TC', serif; font-weight: 400; letter-spacing: 4px; margin: 0; color: var(--gold-accent); font-size: 16px; }
 
         .plant-card {
             background-color: var(--card-bg);
-            border: 1px solid var(--metal-accent);
+            border: 1px solid var(--border-metal);
             padding: 40px;
             margin: 20px;
-            max-width: 500px;
+            max-width: 450px;
             border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             text-align: left;
         }
 
-        .plant-card h1 { font-size: 36px; margin: 0 0 10px 0; }
-        .origin { display: inline-block; padding: 4px 12px; border: 1px solid var(--text-dim); font-size: 12px; color: var(--text-dim); margin-bottom: 20px; text-transform: uppercase; }
+        .plant-card h1 { font-family: 'Noto Serif TC', serif; font-size: 36px; margin: 10px 0; color: var(--text-main); }
+        .origin { font-size: 12px; color: var(--gold-accent); border: 1px solid var(--gold-accent); padding: 2px 8px; border-radius: 2px; letter-spacing: 1px; }
 
         .collection-section { width: 90%; max-width: 600px; margin-top: 40px; padding-bottom: 40px; }
-        .collection-section h3 { text-align: center; font-weight: 500; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .collection-section h3 { text-align: center; font-family: 'Noto Serif TC', serif; font-weight: 400; letter-spacing: 2px; color: var(--text-main); margin-bottom: 30px; }
 
-        .stamp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 30px; }
-        .stamp-item { aspect-ratio: 1; background: #181818; border: 1px solid #222; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #333; transition: 0.5s; }
-        .stamp-item.active { background: #222; border-color: #777; color: #fff; box-shadow: inset 0 0 15px rgba(255,255,255,0.05); }
+        .stamp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .stamp-item { aspect-ratio: 1; background: #eee8e0; border: 1px solid #dcd0c0; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #c0b5a5; transition: 0.4s; border-radius: 2px; }
+        .stamp-item.active { background: #fff; border-color: var(--gold-accent); color: var(--gold-accent); }
 
-        .action-section { margin-top: 40px; padding: 20px; border-top: 1px solid #333; width: 90%; max-width: 600px; text-align: center; }
-        .btn-link { display: inline-block; width: 45%; border: 1px solid #777; padding: 12px; color: #fff; text-decoration: none; font-size: 12px; margin: 5px; transition: 0.3s; }
-        .btn-link:hover { background: #333; }
-
-        .btn-reset { background: none; border: 1px solid #333; color: #444; padding: 8px 16px; margin-top: 20px; cursor: pointer; }
+        .action-section { margin-top: 50px; padding: 30px; border-top: 1px solid #dcd0c0; width: 90%; max-width: 600px; text-align: center; }
+        .btn-link { display: inline-block; width: 42%; border: 1px solid var(--gold-accent); padding: 12px; color: var(--gold-accent); text-decoration: none; font-size: 13px; margin: 5px; transition: 0.3s; border-radius: 2px; }
+        .btn-link:hover { background: var(--gold-accent); color: #fff; }
+        .btn-reset { background: none; border: 1px solid #c0b5a5; color: #999; padding: 8px 16px; margin-top: 30px; cursor: pointer; font-size: 12px; }
     </style>
 </head>
 <body>
 
-    <div class="top-bar"></div>
-    <header><h2>SANCHONG JINGSI HALL Landscape Guide</h2></header>
+    <div class="header-bar"></div>
+    <header><h2>三重靜思堂｜靜心生態導覽</h2></header>
 
     <div id="plant-display"></div>
 
     <div class="collection-section">
-        <h3>STAMP COLLECTION</h3>
+        <h3>🌱 萬物靜觀｜集章冊</h3>
         <div id="stamp-grid" class="stamp-grid"></div>
-        <p id="progress-text" style="text-align:center; color:var(--text-dim); font-size: 12px; margin-top: 20px;">STAMPS COLLECTED: 0 / 19</p>
+        <p id="progress-text" style="text-align:center; color:var(--text-dim); font-size: 13px; margin-top: 20px;">已記錄生命足跡: 0 / 19</p>
     </div>
 
     <div class="action-section">
-        <h3 style="font-size: 12px; color: #666; margin-bottom: 20px;">SHARE YOUR JOURNEY</h3>
-        <a href="https://share.google/QB74gj9jVdIyogUb1" target="_blank" class="btn-link"><i class="fa-brands fa-google"></i> Google 評論</a>
-        <a href="https://www.facebook.com/TzuChiSanchong/?locale=zh_TW" target="_blank" class="btn-link"><i class="fa-brands fa-facebook"></i> FB 打卡分享</a>
+        <h3 style="font-size: 12px; color: #888; margin-bottom: 20px;">人文互動與分享</h3>
+        <a href="https://share.google/QB74gj9jVdIyogUb1" target="_blank" class="btn-link"><i class="fa-brands fa-google"></i> Google 迴響</a>
+        <a href="https://www.facebook.com/TzuChiSanchong/?locale=zh_TW" target="_blank" class="btn-link"><i class="fa-brands fa-facebook"></i> 分享足跡</a>
         <br>
-        <button class="btn-reset" onclick="resetStamps()">RESET ARCHIVE</button>
+        <button class="btn-reset" onclick="resetStamps()">重置紀錄</button>
     </div>
 
     <script>
         const plants = {
-            "pistacia": { "name": "黃連木", "origin": "原生種", "desc": "奇數羽狀複葉，核果紫紅。入秋轉紅，景觀指標。", "icon": "fa-leaf" },
-            "fraxinus": { "name": "光臘樹", "origin": "原生種", "desc": "又稱白雞油，獨角仙最愛，具薄翅果實。", "icon": "fa-tree" },
-            "pinus": { "name": "琉球松", "origin": "外來種", "desc": "兩針一束，樹形蒼勁，極具景觀美感。", "icon": "fa-mountain-sun" },
-            "hibiscus": { "name": "木芙蓉", "origin": "原生種", "desc": "晨白暮粉，花色隨光線變幻。", "icon": "fa-seedling" },
-            "osmanthus": { "name": "桂花", "origin": "外來種", "desc": "香氣濃郁，園區的重要嗅覺地標。", "icon": "fa-wind" },
-            "taxodium": { "name": "落羽松", "origin": "外來種", "desc": "葉細緻，冬轉紅褐色，層次分明。", "icon": "fa-snowflake" },
-            "cinnamomum": { "name": "樟樹", "origin": "原生種", "desc": "具天然樟腦清香，提供園區寬廣遮蔭。", "icon": "fa-shield-halved" },
-            "bischofia": { "name": "茄苳", "origin": "原生種", "desc": "本土鳥類的重要棲所，葉色翠綠。", "icon": "fa-crow" },
-            "liquidambar": { "name": "楓香", "origin": "原生種", "desc": "蒴果如刺球，秋季葉片轉色詩意。", "icon": "fa-sun" },
-            "delonix": { "name": "鳳凰木", "origin": "外來種", "desc": "夏季燃燒火紅，羽狀葉形極美。", "icon": "fa-fire" },
-            "podocarpus": { "name": "羅漢松", "origin": "原生種", "desc": "造型雅緻，種托如同袈裟般特殊。", "icon": "fa-hands-praying" },
-            "crossostephium": { "name": "芙蓉", "origin": "原生種", "desc": "葉背銀白絨毛，民間視為淨化之草。", "icon": "fa-spa" },
-            "ixora": { "name": "仙丹", "origin": "外來種", "desc": "花團錦簇如球，耐修剪，四季開花。", "icon": "fa-circle-dot" },
-            "breynia": { "name": "斑葉長虹", "origin": "外來種", "desc": "大理石般斑紋，視覺對比強烈。", "icon": "fa-palette" },
-            "rhododendron": { "name": "平戶杜鵑", "origin": "外來種", "desc": "繁花簇擁，春季展現熱鬧生機。", "icon": "fa-clover" },
-            "ophiopogon": { "name": "麥門冬", "origin": "原生種", "desc": "耐陰且持久，果實宛如藍寶石。", "icon": "fa-gem" },
-            "ophiopogon_p": { "name": "沿階草", "origin": "原生種", "desc": "石徑邊緣修飾的最佳綠色裝飾。", "icon": "fa-stairs" },
-            "axonopus": { "name": "巴西地毯草", "origin": "外來種", "desc": "覆蓋力強，如柔軟的地毯鋪設。", "icon": "fa-rug" },
-            "zoysia": { "name": "台北草", "origin": "原生種", "desc": "質感細緻，園區最平整的綠色地皮。", "icon": "fa-grip-lines" }
+            "pistacia": { "name": "黃連木", "origin": "原生種", "desc": "羽狀複葉如傘，秋紅展現生命之美，靜守於庭院之中。", "icon": "fa-leaf" },
+            "fraxinus": { "name": "光臘樹", "origin": "原生種", "desc": "樹幹斑紋優雅，為自然界的小生命提供溫暖的依靠。", "icon": "fa-bug" },
+            "pinus": { "name": "琉球松", "origin": "外來種", "desc": "蒼勁挺拔，如同長者的睿智，靜觀歲月更迭。", "icon": "fa-tree" },
+            "hibiscus": { "name": "木芙蓉", "origin": "原生種", "desc": "晨白暮粉，如心境流轉，呈現大自然的無常之美。", "icon": "fa-flower-tulip" },
+            "osmanthus": { "name": "桂花", "origin": "外來種", "desc": "幽香傳千里，不爭妍鬥艷，傳遞清淨的氣息。", "icon": "fa-wind" },
+            "taxodium": { "name": "落羽松", "origin": "外來種", "desc": "羽葉細膩，秋冬時節紅褐色，是大地的禮讚。", "icon": "fa-snowflake" },
+            "cinnamomum": { "name": "樟樹", "origin": "原生種", "desc": "清香除瘴，廣大遮蔭，如同慈悲的心念包容萬物。", "icon": "fa-tree" },
+            "bischofia": { "name": "茄苳", "origin": "原生種", "desc": "強韌長青，庇護眾鳥，展現生命共同體的謙卑。", "icon": "fa-crow" },
+            "liquidambar": { "name": "楓香", "origin": "原生種", "desc": "掌狀葉展現歲月層次，秋冬轉色如畫，靜心欣賞。", "icon": "fa-sun" },
+            "delonix": { "name": "鳳凰木", "origin": "外來種", "desc": "盛夏火紅燦爛，是生命熱情與活力最好的體現。", "icon": "fa-fire" },
+            "podocarpus": { "name": "羅漢松", "origin": "原生種", "desc": "端正莊嚴，如同修行的姿態，守護一方淨土。", "icon": "fa-hands-praying" },
+            "crossostephium": { "name": "芙蓉", "origin": "原生種", "desc": "銀白絨毛潔淨人心，是謙和柔軟的象徵。", "icon": "fa-spa" },
+            "ixora": { "name": "仙丹", "origin": "外來種", "desc": "簇擁花開，傳遞喜悅與滿滿的祝福。", "icon": "fa-circle-dot" },
+            "breynia": { "name": "斑葉長虹", "origin": "外來種", "desc": "葉斑絢爛如藝術，體現自然界多樣性的美感。", "icon": "fa-palette" },
+            "rhododendron": { "name": "平戶杜鵑", "origin": "外來種", "desc": "繁花簇擁，為大地增添溫馨的春意與生機。", "icon": "fa-clover" },
+            "ophiopogon": { "name": "麥門冬", "origin": "原生種", "desc": "葉叢蒼翠，藍色果實純淨自然，靜默守候。", "icon": "fa-gem" },
+            "ophiopogon_p": { "name": "沿階草", "origin": "原生種", "desc": "如綠地毯般平整，柔韌適應，展現韌性。", "icon": "fa-stairs" },
+            "axonopus": { "name": "巴西地毯草", "origin": "外來種", "desc": "平鋪在地，滋養大地，展現無私的包容。", "icon": "fa-rug" },
+            "zoysia": { "name": "台北草", "origin": "原生種", "desc": "質地細緻平整，守護足下的每一步，寧靜致遠。", "icon": "fa-grip-lines" }
         };
 
         const params = new URLSearchParams(window.location.search);
@@ -115,7 +114,7 @@
                 display.innerHTML = `<div class="plant-card"><span class="origin">${plants[id].origin}</span><h1>${plants[id].name}</h1><p>${plants[id].desc}</p></div>`;
                 if (!stamps.includes(id)) { stamps.push(id); localStorage.setItem('myStamps', JSON.stringify(stamps)); }
             } else {
-                display.innerHTML = `<div class="plant-card" style="text-align:center;"><h2>GARDEN TOUR</h2><p>SCAN QR CODE TO START DISCOVERY</p></div>`;
+                display.innerHTML = `<div class="plant-card" style="text-align:center;"><h2>生態靜心導覽</h2><p>請掃描植物旁的 QR Code，開啟與自然對話的契機。</p></div>`;
             }
 
             const grid = document.getElementById('stamp-grid');
@@ -125,10 +124,10 @@
                 item.innerHTML = `<i class="fa-solid ${plants[key].icon}"></i>`;
                 grid.appendChild(item);
             });
-            document.getElementById('progress-text').innerText = `STAMPS COLLECTED: ${stamps.length} / 19`;
+            document.getElementById('progress-text').innerText = `已記錄生命足跡: ${stamps.length} / 19`;
         }
 
-        function resetStamps() { if(confirm("確定要重置集章冊嗎？")){ localStorage.removeItem('myStamps'); location.reload(); } }
+        function resetStamps() { if(confirm("確定要將記錄歸零，重新出發嗎？")){ localStorage.removeItem('myStamps'); location.reload(); } }
         init();
     </script>
 </body>
