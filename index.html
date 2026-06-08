@@ -4,75 +4,270 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>三重靜思堂生態導覽</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;500;700&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { font-family: '微軟正黑體', sans-serif; text-align: center; padding: 20px; background-color: #fdfbf7; }
-        .card { border: 1px solid #ddd; padding: 20px; margin: 20px auto; border-radius: 15px; background: white; max-width: 400px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
-        .stamp-box { margin-top: 20px; padding: 15px; background: #eee; border-radius: 10px; }
-        button { padding: 10px 20px; cursor: pointer; border: none; border-radius: 5px; background: #5a7d5a; color: white; }
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #111111;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --metal-accent: #444444;
+            --silver-glow: linear-gradient(135deg, #ffffff 0%, #a0a0a0 50%, #444444 100%);
+        }
+
+        body {
+            font-family: 'Urbanist', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 頂部裝飾線 */
+        .top-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--silver-glow);
+        }
+
+        header {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h2 {
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin: 0;
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+
+        /* 植栽資訊卡 */
+        .plant-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--metal-accent);
+            padding: 40px;
+            margin: 20px;
+            max-width: 500px;
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .plant-card h1 {
+            font-size: 42px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        .plant-card .origin {
+            display: inline-block;
+            padding: 4px 12px;
+            border: 1px solid var(--text-dim);
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .plant-card p {
+            line-height: 1.8;
+            font-weight: 300;
+            color: #ccc;
+        }
+
+        /* 集章牆部分 */
+        .collection-section {
+            width: 90%;
+            max-width: 600px;
+            margin-top: 40px;
+            padding-bottom: 60px;
+        }
+
+        .collection-section h3 {
+            text-align: center;
+            font-weight: 500;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .stamp-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .stamp-item {
+            aspect-ratio: 1;
+            background: #181818;
+            border: 1px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #333;
+            transition: 0.5s;
+        }
+
+        .stamp-item.active {
+            background: var(--card-bg);
+            border-color: #777;
+            color: var(--text-main);
+            box-shadow: inset 0 0 15px rgba(255,255,255,0.05);
+        }
+
+        .stamp-item i {
+            font-size: 24px;
+            opacity: 0.1;
+        }
+
+        .stamp-item.active i {
+            opacity: 1;
+            color: #fff;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-top: 20px;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 40px;
+            font-size: 10px;
+            color: #444;
+            letter-spacing: 2px;
+        }
+
+        /* 重置按鈕 */
+        .btn-reset {
+            background: none;
+            border: 1px solid #333;
+            color: #444;
+            padding: 8px 16px;
+            font-size: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .btn-reset:hover { border-color: #666; color: #888; }
     </style>
 </head>
 <body>
 
-    <div id="content" class="card">
-        <h1>讀取中...</h1>
+    <div class="top-bar"></div>
+
+    <header>
+        <h2>SANCHONG JINGSI HALL Landscape Guide</h2>
+    </header>
+
+    <div id="plant-display">
+        </div>
+
+    <div class="collection-section">
+        <h3>STAMP COLLECTION</h3>
+        <div id="stamp-grid" class="stamp-grid">
+            </div>
+        <p id="progress-text" class="progress-text">STAMPS COLLECTED: 0 / 19</p>
+        <div style="text-align:center;">
+            <button class="btn-reset" onclick="resetStamps()">RESET ARCHIVE</button>
+        </div>
     </div>
 
-    <div class="stamp-box">
-        <h3>我的植物集章冊</h3>
-        <p id="stamp-count">已收集: 0 / 19</p>
-        <button onclick="clearStamps()">清除所有集章</button>
-    </div>
+    <footer>
+        DESIGNED FOR SUSTAINABILITY & ECO-AWARENESS
+    </footer>
 
     <script>
         const plants = {
-            "pistacia": { "name": "黃連木", "desc": "奇數羽狀複葉，核果熟時紫紅色。" },
-            "fraxinus": { "name": "光臘樹", "desc": "台灣原生喬木，又稱白雞油，翅果具薄翅。" },
-            "pinus": { "name": "琉球松", "desc": "兩針一束的針葉，球果卵狀圓錐形。" },
-            "hibiscus": { "name": "木芙蓉", "desc": "掌狀3-5裂葉，花色會由白轉粉紅。" },
-            "osmanthus": { "name": "桂花", "desc": "長橢圓葉，花黃白色，香氣濃郁。" },
-            "taxodium": { "name": "落羽松", "desc": "羽狀複葉，秋季轉為紅褐色。" },
-            "cinnamomum": { "name": "樟樹", "desc": "卵形葉，聚繖花序，漿果熟時紫黑色。" },
-            "bischofia": { "name": "茄苳", "desc": "三出複葉，果實熟時呈黃褐色。" },
-            "liquidambar": { "name": "楓香", "desc": "掌狀3裂葉，蒴果為頭狀刺球。" },
-            "delonix": { "name": "鳳凰木", "desc": "二回羽狀複葉，花色火紅，莢果帶狀。" },
-            "podocarpus": { "name": "羅漢松", "desc": "條狀披針形葉，園藝造型價值高。" },
-            "crossostephium": { "name": "芙蓉", "desc": "葉背具白毛，具特殊清香。" },
-            "ixora": { "name": "仙丹", "desc": "橢圓革質葉，花紅球狀，耐修剪。" },
-            "breynia": { "name": "斑葉長虹", "desc": "卵形葉具豐富斑紋，色彩繽紛。" },
-            "rhododendron": { "name": "平戶杜鵑", "desc": "披針形葉，春季盛開粉紅至紅色花。" },
-            "ophiopogon": { "name": "麥門冬", "desc": "叢生線形葉，漿果成熟呈藍色。" },
-            "ophiopogon_p": { "name": "沿階草", "desc": "基部叢生，適合作為邊緣地被。" },
-            "axonopus": { "name": "巴西地毯草", "desc": "質軟的寬線形葉，覆蓋力強。" },
-            "zoysia": { "name": "台北草", "desc": "質地極細緻的平整地被。" }
+            "pistacia": { "name": "黃連木", "origin": "原生種", "desc": "奇數羽狀複葉，核果熟時由紅轉紫紅色。入秋後葉色變紅，極具觀賞價值。", "icon": "fa-leaf" },
+            "fraxinus": { "name": "光臘樹", "origin": "原生種", "desc": "樹幹具灰白色斑紋，質地堅韌，翅果先端具薄翅，是獨角仙的最愛。", "icon": "fa-tree" },
+            "pinus": { "name": "琉球松", "origin": "外來種", "desc": "兩針一束的針葉，樹形蒼勁有力。是景觀案中重要的造型骨幹。", "icon": "fa-mountain-sun" },
+            "hibiscus": { "name": "木芙蓉", "origin": "原生種", "desc": "花朵色彩會隨著光線與時間由白轉粉紅，早晨與傍晚各具風情。", "icon": "fa-seedling" },
+            "osmanthus": { "name": "桂花", "origin": "外來種", "desc": "常綠灌木，花朵雖小但香氣濃郁悠遠，是園區內重要的嗅覺景觀。", "icon": "fa-wind" },
+            "taxodium": { "name": "落羽松", "origin": "外來種", "desc": "羽狀複葉極為細緻，入冬後整棵樹會轉為紅褐色，展現季節更迭之美。", "icon": "fa-snowflake" },
+            "cinnamomum": { "name": "樟樹", "origin": "原生種", "desc": "具特有清香，全株可提煉樟腦。樹冠廣大，提供良好的遮蔭功能。", "icon": "fa-shield-halved" },
+            "bischofia": { "name": "茄苳", "origin": "原生種", "desc": "抗風力強，三出複葉，果實是許多本土鳥類的重要食物來源。", "icon": "fa-crow" },
+            "liquidambar": { "name": "楓香", "origin": "原生種", "desc": "掌狀三裂葉，果實為球型蒴果，秋冬季葉色轉黃至紅，極具詩意。", "icon": "fa-sun" },
+            "delonix": { "name": "鳳凰木", "origin": "外來種", "desc": "花開時如火焰般火紅，二回羽狀複葉，是夏天最熱情的象徵。", "icon": "fa-fire" },
+            "podocarpus": { "name": "羅漢松", "origin": "原生種", "desc": "葉形優雅如披針，種子托如羅漢披袈裟，是極受喜愛的造型植栽。", "icon": "fa-hands-praying" },
+            "crossostephium": { "name": "芙蓉", "origin": "原生種", "desc": "葉片帶銀白色絨毛，具獨特香氣，民間常視為避邪與淨化之物。", "icon": "fa-spa" },
+            "ixora": { "name": "仙丹", "origin": "外來種", "desc": "聚繖花序排列如球，花色火紅豔麗，耐修剪，適合作為低矮綠籬。", "icon": "fa-circle-dot" },
+            "breynia": { "name": "斑葉長虹", "origin": "外來種", "desc": "葉片具有如大理石般的白色斑紋，為綠意中增點明亮的色彩對比。", "icon": "fa-palette" },
+            "rhododendron": { "name": "平戶杜鵑", "origin": "外來種", "desc": "春季盛花期時滿株繁花，是園區內色彩層次的重要成員。", "icon": "fa-clover" },
+            "ophiopogon": { "name": "麥門冬", "origin": "原生種", "desc": "極為耐陰的地被植物，果實如深藍色寶石，藏於細長綠葉間。", "icon": "fa-gem" },
+            "ophiopogon_p": { "name": "沿階草", "origin": "原生種", "desc": "耐踐踏且適應力強，是修飾石徑邊緣與擋土牆的最佳植材。", "icon": "fa-stairs" },
+            "axonopus": { "name": "巴西地毯草", "origin": "外來種", "desc": "質地柔軟的草皮，具有極強的水平擴展力，形成綠色的地毯。", "icon": "fa-rug" },
+            "zoysia": { "name": "台北草", "origin": "原生種", "desc": "質地最細緻的草坪，生長緩慢平整，展現優質的景觀細節。", "icon": "fa-grip-lines" }
         };
 
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
         let stamps = JSON.parse(localStorage.getItem('myStamps') || '[]');
 
-        function updateUI() {
-            const content = document.getElementById('content');
+        function init() {
+            // 處理植物顯示
+            const display = document.getElementById('plant-display');
             if (plants[id]) {
-                content.innerHTML = `<h1>${plants[id].name}</h1><p>${plants[id].desc}</p>`;
+                display.innerHTML = `
+                    <div class="plant-card">
+                        <span class="origin">${plants[id].origin}</span>
+                        <h1>${plants[id].name}</h1>
+                        <p>${plants[id].desc}</p>
+                    </div>
+                `;
                 if (!stamps.includes(id)) {
                     stamps.push(id);
                     localStorage.setItem('myStamps', JSON.stringify(stamps));
-                    alert("恭喜！您已收集到 " + plants[id].name + "！");
                 }
             } else {
-                content.innerHTML = "<h1>三重靜思堂生態導覽</h1><p>請掃描園區內的植物 QR Code 開始探索！</p>";
+                display.innerHTML = `
+                    <div class="plant-card" style="text-align:center;">
+                        <h2>GARDEN TOUR</h2>
+                        <p>SCAN QR CODE TO START DISCOVERY</p>
+                    </div>
+                `;
             }
-            document.getElementById('stamp-count').innerText = `已收集: ${stamps.length} / 19`;
+
+            // 生成集章牆
+            const grid = document.getElementById('stamp-grid');
+            Object.keys(plants).forEach(key => {
+                const item = document.createElement('div');
+                item.className = 'stamp-item' + (stamps.includes(key) ? ' active' : '');
+                item.innerHTML = `<i class="fa-solid ${plants[key].icon}"></i>`;
+                item.title = plants[key].name;
+                grid.appendChild(item);
+            });
+
+            document.getElementById('progress-text').innerText = `STAMPS COLLECTED: ${stamps.length} / 19`;
         }
 
-        function clearStamps() {
-            localStorage.removeItem('myStamps');
-            stamps = [];
-            updateUI();
-            alert("集章冊已清除。");
+        function resetStamps() {
+            if(confirm("REBOOT SYSTEM? ALL STAMPS WILL BE WIPED.")){
+                localStorage.removeItem('myStamps');
+                location.reload();
+            }
         }
 
-        updateUI();
+        init();
     </script>
 </body>
 </html>
+
+### 系統更新亮點：
+1. **極簡金屬美學**：採用全黑背景配合「銀色閃光 (Silver Glow)」漸層線條，與您的實體金屬說明牌完美契合。
+2. **自動化集章牆**：現在每個植物都配有一個專屬的 **Icon (圖示)**（例如落羽松是雪花、茄苳是鳥兒），掃描後會自動點亮「STAMP COLLECTION」牆。
+3. **動態內容**：如果您想改內容，只要修改 JavaScript 裡的 `desc` 即可。
+
+您的網站已經優化完成了！歡迎再次查看您的 GitHub 網址，感受一下全新的精品導覽介面。
